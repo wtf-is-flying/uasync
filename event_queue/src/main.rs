@@ -4,7 +4,7 @@ use std::{
     net::TcpStream,
 };
 
-use uasync::{
+use event_queue::{
     ffi::{self, Event},
     poll::Poll,
 };

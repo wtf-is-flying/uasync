@@ -3,5 +3,5 @@
 version = 4
 
 [[package]]
-name = "event_queue"
+name = "uasync"
 version = "0.1.0"
