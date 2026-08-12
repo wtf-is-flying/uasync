@@ -1,4 +1,9 @@
-use std::io::{Read, Write};
+use std::{
+    future::Future as StdFuture,
+    io::{Read, Write},
+    pin::Pin,
+    task::{Context, Poll},
+};
 
 use crate::future::{Future, PollState};
 
@@ -7,6 +12,10 @@ pub struct Http;
 impl Http {
     pub fn get(path: &str) -> impl Future<Output = String> {
         HttpGetFuture::new(path)
+    }
+
+    pub async fn std_get(path: &str) -> String {
+        HttpGetFuture::new(path).await
     }
 }
 
@@ -71,6 +80,15 @@ impl Future for HttpGetFuture {
                 Err(e) => panic!("{e:?}"),
             }
         }
+    }
+}
+
+impl StdFuture for HttpGetFuture {
+    type Output = String;
+
+    fn poll(self: Pin<&mut Self>, _cx: &mut Context<'_>) -> Poll<Self::Output> {
+        let this = Pin::into_inner(self);
+        Future::poll(this).into()
     }
 }
 

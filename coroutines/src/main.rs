@@ -1,4 +1,8 @@
-use std::{thread, time::Duration};
+use std::{
+    task::{Context, Waker},
+    thread,
+    time::Duration,
+};
 
 use coroutines::{
     future::{Future, PollState},
@@ -65,15 +69,28 @@ fn async_main() -> impl Future<Output = ()> {
     Coroutine::new()
 }
 
+async fn std_async_main() {
+    println!("Starting coroutine");
+    let txt = Http::std_get("/600/HelloWorld1").await;
+    println!("{txt}");
+    let txt = Http::std_get("/400/HelloWorld2").await;
+    println!("{txt}");
+}
+
 fn main() {
     let mut future = async_main();
-    loop {
-        match future.poll() {
-            PollState::Ready(_) => break,
-            PollState::NotReady => {
-                println!("Future not ready; you schedule other tasks in the meantime");
-            }
-        }
+    while !future.poll().is_ready() {
+        println!("Future not ready; you schedule other tasks in the meantime");
+        thread::sleep(Duration::from_millis(100));
+    }
+
+    let future = std_async_main();
+    let mut pinned = Box::pin(future);
+    let waker = Waker::noop();
+    let mut cx = Context::from_waker(waker);
+
+    while pinned.as_mut().poll(&mut cx).is_pending() {
+        println!("Future not ready; you schedule other tasks in the meantime");
         thread::sleep(Duration::from_millis(100));
     }
 }
