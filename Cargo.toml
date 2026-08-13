@@ -1,3 +1,11 @@
 [workspace]
 resolver = "3"
-members = ["coroutines", "event_queue", "fibers", "stack_swap", "delayserver"]
+members = [
+  "asyncawait",
+  "corofy",
+  "coroutines",
+  "delayserver",
+  "event_queue",
+  "fibers",
+  "stack_swap",
+]
