@@ -6,6 +6,6 @@ members = [
   "coroutines",
   "delayserver",
   "event_queue",
-  "fibers",
+  "fibers", "reactor_executor", "runtime",
   "stack_swap",
 ]
