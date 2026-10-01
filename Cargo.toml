@@ -1,7 +1,7 @@
 [workspace]
 resolver = "3"
 members = [
-  "asyncawait", "ch9a_coroutines_variables", "ch9b_coroutines_references", "ch9c_coroutines_problem", "ch9d_pinning", "ch9e_coroutines-pin",
+  "asyncawait", "ch10_runtime", "ch9a_coroutines_variables", "ch9b_coroutines_references", "ch9c_coroutines_problem", "ch9d_pinning", "ch9e_coroutines-pin",
   "corofy",
   "coroutines",
   "delayserver",
