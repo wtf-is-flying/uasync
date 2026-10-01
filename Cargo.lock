@@ -319,6 +319,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "ch9d_pinning"
+version = "0.1.0"
+
+[[package]]
+name = "ch9e_coroutines-pin"
+version = "0.1.0"
+dependencies = [
+ "mio",
+]
+
+[[package]]
 name = "chacha20"
 version = "0.10.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
