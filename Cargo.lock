@@ -312,6 +312,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "ch9c_coroutines_problem"
+version = "0.1.0"
+dependencies = [
+ "mio",
+]
+
+[[package]]
 name = "chacha20"
 version = "0.10.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"

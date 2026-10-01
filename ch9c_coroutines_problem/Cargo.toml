@@ -1,0 +1,7 @@
+[package]
+name = "ch9c_coroutines_problem"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+mio = { version = "1.2.3", features = ["net", "os-poll"] }
